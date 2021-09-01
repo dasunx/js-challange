@@ -1,33 +1,35 @@
 function Stack() {
-	this.count = 0;
-	this.data = [];
+	let count = 0;
+	let data = [];
 
-	this.push = function (element) {
-		this.data.push(element);
-		this.count++;
+	Stack.prototype.push = function (element) {
+		data.push(element);
+		count++;
 	};
 
-	this.pop = function () {
-		if (this.isEmpty()) {
+	Stack.prototype.pop = function () {
+		if (isEmpty()) {
 			throw new Error('Stack is empty');
 		}
-		this.count--;
-		return this.data.pop();
+		count--;
+		return data.pop();
 	};
 
-	this.peek = function () {
-		if (this.isEmpty()) {
+	Stack.prototype.peek = function () {
+		if (isEmpty()) {
 			throw new Error('Stack is empty');
 		}
-		return this.data[this.count - 1];
+		return data[count - 1];
 	};
 
-	this.isEmpty = function () {
-		return this.count === 0;
+	//refined as a private method
+	const isEmpty = () => {
+		return count === 0;
 	};
 }
 
 var stack = new Stack();
 stack.push(1);
 stack.push(2);
+console.log(stack.pop());
 console.log(stack.peek());
